@@ -18,7 +18,11 @@ export class GeminiGrafanaService {
   private model: any;
 
   constructor(private configService: ConfigService) {
-    this.genAI = new GoogleGenerativeAI('AIzaSyBxXG54stiUZI09SWayH-H0wfGKGgK9b5U');
+    const apiKey = this.configService.get<string>('GEMINI_API_KEY');
+    if (!apiKey) {
+      throw new Error('GEMINI_API_KEY is not defined in environment variables');
+    }
+    this.genAI = new GoogleGenerativeAI(apiKey);
     this.model = this.genAI.getGenerativeModel({
       model: 'gemini-1.5-flash', // Updated to stable model
       generationConfig: {
@@ -34,7 +38,7 @@ export class GeminiGrafanaService {
     try {
       const url = `${this.lokiUrl}/loki/api/v1/query_range?query={ job=~"account-service|customer-api-service|customer-service|transaction-service" }&limit=1000`;
       console.log('Requesting Loki URL:', url);
-      
+
       const response = await axios.get(url);
       console.log('Loki response status:', response.status);
       if (response.data && response.data.data) {
@@ -98,7 +102,7 @@ export class GeminiGrafanaService {
   async analyzeWithGemini(query: string, data: any): Promise<any> {
     try {
       console.log('Starting Gemini analysis for query:', query);
-      
+
       // Extract log entries from the Loki response
       const logEntries = data.logs?.data?.result?.[0]?.values || [];
       const formattedLogs = logEntries.map(([timestamp, message]) => ({
@@ -133,12 +137,12 @@ export class GeminiGrafanaService {
       `;
 
       console.log('Sending to Gemini:', context);
-      
+
       const result = await this.model.generateContent(context);
       const response = await result.response;
       console.log('Raw Gemini response:', response);
       const text = response.text();
-      
+
       console.log('Parsed Gemini response text:', text);
 
       if (!text || text.trim() === '') {
