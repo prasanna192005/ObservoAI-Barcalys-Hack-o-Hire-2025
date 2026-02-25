@@ -1,103 +1,112 @@
-# API Monitoring System with OpenTelemetry
+# 👁️ ObservoAI — The AI-Powered API Watchdog
 
-This project demonstrates how to use OpenTelemetry to collect metrics, logs, and traces from a Node.js API and send them to multiple backends including Elasticsearch, Prometheus, and Elastic APM.
+[![Demo](https://img.shields.io/badge/Demo-Watch%20Now-red?style=for-the-badge&logo=youtube)](https://youtu.be/v2XaY78f0vQ)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![Status: Superpowered](https://img.shields.io/badge/Status-Superpowered-blue?style=for-the-badge)](https://github.com/prasanna192005/ObservoAI)
 
-## Components
+**ObservoAI** isn't just a monitoring tool; it's the Sherlock Holmes of your distributed systems. Whether your APIs are chilling on-prem, floating in the cloud, or lost in a multi-cloud maze, ObservoAI keeps its AI-powered eyes peeled for trouble.
 
-- **Node.js Express API**: A simple API that generates logs, metrics, and traces
-- **OpenTelemetry SDK**: Collects telemetry data from the application
-- **OpenTelemetry Collector**: Receives telemetry data and exports it to different backends
-- **Elasticsearch**: Stores logs and traces data
-- **Kibana**: Visualizes the logs and traces data from Elasticsearch
-- **Elastic APM**: Provides APM functionality for the application
-- **Prometheus**: Stores metrics data
-- **Grafana**: Visualizes metrics data from Prometheus
+It delivers real-time health insights, predictive analytics, and even makes phone calls (yes, actual calls!) when things go south. All visualized in a gorgeous Grafana dashboard with a sleek Next.js frontend.
 
-## Prerequisites
+---
 
-- Node.js (v14 or later)
-- Docker and Docker Compose
+## 🚀 Superpowers (Features)
 
-## Setup
+- **🌍 Omnipresent Monitoring**: Tracks APIs across on-prem, cloud, and multi-cloud environments.
+- **💰 Bank API Simulation**: Includes a realistic, high-frequency transaction API to simulate complex request journeys. Perfect for stress testing your infrastructure.
+- **🧠 3-Tier Anomaly Detection**:
+  - **ARIMA**: Forecasting trend shifts like a pro.
+  - **LSTM**: Deep learning to spot performance degradation before users do.
+  - **Isolation Forest**: Sniffs out those rare, "black swan" anomalies.
+- **💬 Chat with your Logs**: Don't just read logs—interrogate them! Query metrics and traces interactively using PromQL and TraceQL through our chat interface.
+- **🕵️ Root Cause Analysis (RCA)**: LLM-powered analysis that tells you *why* things broke, not just that they did. It can even email you reports automatically.
+- **📞 AI-Driven Phone Alerts**: Critical incidents? Our AI will literally call you. No more sleeping through important pagers.
+- **📈 Predictive Analytics**: Forecasts upcoming failures and their impact on the full request journey.
+- **🚨 Environment-Aware Alerts**: Email, AI calls, and dashboard pings tailored to your specific environment.
+- **🐳 Scalable & Portable**: Fully Dockerized. Scale it up or move it around with ease.
 
-1. Install the dependencies:
+---
 
+## 🛠️ The Gear (Tech Stack)
+
+### **Backend & AI**
+- ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) **Python/FastAPI**: The brains of the operation.
+- ![ML](https://img.shields.io/badge/ML-ARIMA%20|%20LSTM%20|%20Isolation%20Forest-orange?style=flat-square) **Scikit-learn, TensorFlow/PyTorch**: For the heavy-lifting anomaly detection.
+- ![OTEL](https://img.shields.io/badge/OTEL-OpenTelemetry-blue?style=flat-square) **OpenTelemetry SDKs**: Instrumented for maximum visibility.
+- ![LLM](https://img.shields.io/badge/LLM-Gemini%20|%20RCA-green?style=flat-square) **LLM**: For Root Cause Analysis & automated reporting.
+
+### **The Observability Stack**
+- ![Loki](https://img.shields.io/badge/Loki-Log%20Aggregation-grey?style=flat-square) **Loki**: Log aggregation.
+- ![Prometheus](https://img.shields.io/badge/Prometheus-Metrics-E6522C?style=flat-square&logo=prometheus&logoColor=white) **Prometheus**: Metrics storage (PromQL).
+- ![Tempo](https://img.shields.io/badge/Tempo-Traces-lightgrey?style=flat-square) **Tempo**: Distributed tracing (TraceQL).
+- ![Grafana](https://img.shields.io/badge/Grafana-Visualization-F46800?style=flat-square&logo=grafana&logoColor=white) **Grafana**: Stunning custom dashboards & AI metrics visualization.
+
+### **Frontend & Infra**
+- ![Next.js](https://img.shields.io/badge/Next.js-Frontend-black?style=flat-square&logo=next.js&logoColor=white) **Next.js**: Responsive, interactive UI.
+- ![Docker](https://img.shields.io/badge/Docker-Containers-2496ED?style=flat-square&logo=docker&logoColor=white) **Docker**: Easy deployment.
+
+---
+
+## 🏗️ Getting Started (The Mission Briefing)
+
+### 1. Gear Up
+Install the dependencies:
 ```bash
 npm install
 ```
 
-2. Start all the services using Docker Compose:
-
+### 2. Launch the Mother Ship
+Start all services (Collectors, Databases, AI Services) using Docker Compose:
 ```bash
 docker-compose up -d
 ```
 
-3. Start the Node.js application (already started by Docker Compose):
-
+### 3. Deploy the API
+Run the Node.js application (if not already handled by Docker):
 ```bash
 node index.js
 ```
 
-4. Run the load tester to generate traffic:
-
+### 4. Unleash Chaos (Load Testing)
+Generate traffic and simulate real-world usage:
 ```bash
 docker-compose run load-tester
+# OR for the banking simulator
+node banking-services/generate-test-data.js
 ```
 
-## Testing the API
+---
 
-Once the application is running, you can test it by making requests to the following endpoints:
+## 📊 Where to Watch the Magic
 
-- Roll a dice: http://localhost:8080/rolldice
-- Health check: http://localhost:8080/health
+- **Kibana (Logs & Traces)**: [http://localhost:5601](http://localhost:5601)
+- **Prometheus (Metrics)**: [http://localhost:9090](http://localhost:9090)
+- **Grafana (The Control Room)**: [http://localhost:3005](http://localhost:3005) (User: `admin`, Pass: `admin`)
+- **API Health Check**: [http://localhost:8080/health](http://localhost:8080/health)
+- **Roll the Dice (Generate Traces)**: [http://localhost:8080/rolldice](http://localhost:8080/rolldice)
 
-## Viewing the Telemetry Data
+---
 
-### Logs and Traces in Kibana
+## 📌 Why ObservoAI?
 
-You can view logs and traces data in Kibana at http://localhost:5601.
+Distributed systems are messy. Cloud, on-prem, hybrid... it’s a lot to handle. **ObservoAI** solves this by:
+1.  **Spotting the Invisible**: Using ML to find anomalies that traditional thresholds miss.
+2.  **Bridging the Gap**: Integrating metrics and traces directly into Grafana for instant context.
+3.  **Talking Back**: AI-driven phone calls and RCA reports mean you're always informed.
+4.  **Scaling with You**: Dockerized and ready for any environment.
 
-1. Open Kibana and navigate to "Stack Management" > "Index Management"
-2. You should see the index `api-monitoring` which contains logs and traces data
-3. Create an index pattern for this index to visualize the data in Kibana's Discover view
+---
 
-### APM Data in Kibana
+## 📝 Troubleshooting
 
-You can view APM data in Kibana at http://localhost:5601/app/apm.
-
-### Metrics in Prometheus and Grafana
-
-You can view metrics in:
-
-1. Prometheus UI: http://localhost:9090
-   - Try queries like `http_requests_total` or `http_request_duration_seconds`
-
-2. Grafana: http://localhost:3000 (login with admin/admin)
-   - To set up Grafana:
-     1. Add Prometheus as a data source (URL: http://prometheus:9090)
-     2. Import dashboards or create your own visualizations
-
-## Configuration Files
-
-- `instrumentation.js`: Configures the OpenTelemetry SDK in the application
-- `otel-collector-config.yaml`: Configures the OpenTelemetry Collector
-- `prometheus.yml`: Configures Prometheus
-- `docker-compose.yaml`: Sets up the required infrastructure
-
-## Troubleshooting
-
-If you encounter issues with any component, check the respective logs:
-
+If the ship hits an iceberg, check the logs:
 ```bash
-# OpenTelemetry Collector logs
 docker logs otel-collector
-
-# Elasticsearch logs
 docker logs elasticsearch
-
-# Prometheus logs
 docker logs prometheus
-
-# Grafana logs
 docker logs grafana
-``` 
+```
+
+---
+
+*Built with ❤️ by the chadCN Team.*
