@@ -79,9 +79,8 @@ node banking-services/generate-test-data.js
 
 ## 📊 Where to Watch the Magic
 
-- **Loki (Logs)**: [http://localhost:5601](http://localhost:5601)
 - **Prometheus (Metrics)**: [http://localhost:9090](http://localhost:9090)
-- **Grafana (The Control Room)**: [http://localhost:3005](http://localhost:3005) (User: `admin`, Pass: `admin`)
+- **Grafana (The Control Room Logs, Metrics, Traces)**: [http://localhost:3005](http://localhost:3005) (User: `admin`, Pass: `admin`)
 - **API Health Check**: [http://localhost:8080/health](http://localhost:8080/health)
 - **Roll the Dice (Generate Traces)**: [http://localhost:8080/rolldice](http://localhost:8080/rolldice)
 
